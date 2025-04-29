@@ -1,0 +1,46 @@
+import streamlit as st
+import random
+
+def welcome():
+    st.title("🚀 NextStep AI Career Coach")
+    st.write("I'm here to help you with career advice, resume feedback, and next steps!")
+
+def ask_user_goals():
+    goal = st.selectbox(
+        "What is your main career goal right now?",
+        ("Get promoted", "Switch industries", "Improve leadership skills", "Negotiate salary", "Update resume")
+    )
+    return goal
+
+def basic_goal_advice(goal):
+    tips = {
+        "Get promoted": "Focus on taking ownership of high-visibility projects. Document wins, gather feedback, and prepare a strong case for your promotion.",
+        "Switch industries": "Identify transferable skills from your current role. Take online courses and build a network in your target industry.",
+        "Improve leadership skills": "Volunteer for leadership roles in small projects first. Leadership is a muscle — practice it before you need it!",
+        "Negotiate salary": "Research market salaries using Glassdoor, Levels.fyi, and Payscale. Be ready to confidently anchor high during negotiations.",
+        "Update resume": "Focus your resume on accomplishments, not duties. Use strong action verbs and quantifiable results."
+    }
+    st.success(f"💡 Tip: {tips.get(goal, 'Keep pushing forward!')}")
+
+def resume_review():
+    st.write("Optional: Paste a short sample of your resume below for quick feedback.")
+    resume_text = st.text_area("Paste a few lines of your resume:")
+    if resume_text:
+        feedbacks = [
+            "✅ Strong action verbs! Consider adding more measurable results.",
+            "📈 Great experience listed. Try making your bullet points shorter and punchier.",
+            "🔍 Watch out for passive language. Make your achievements sound bold and direct.",
+            "🛠️ Consider grouping similar roles or skills to make your resume easier to skim."
+        ]
+        st.info(random.choice(feedbacks))
+
+def closing():
+    st.write("\nThanks for using NextStep AI Career Coach! 🚀")
+    st.write("Remember: small consistent steps = big career wins over time.")
+
+# --- Main Flow ---
+welcome()
+goal = ask_user_goals()
+basic_goal_advice(goal)
+resume_review()
+closing()
